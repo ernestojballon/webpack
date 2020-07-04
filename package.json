@@ -1,0 +1,21 @@
+{
+  "name": "simplewebpack",
+  "version": "1.0.0",
+  "description": "webpack",
+  "main": "./app/index.js",
+  "dependencies": {
+    "webpack-cli": "^3.3.12",
+    "webpack": "^4.43.0"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^4.2.2"
+  },
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --content-base build"
+  },
+  "author": "ernesto ballon",
+  "license": "ISC"
+}
