@@ -1,8 +1,18 @@
 {
   "presets": [
-    "@babel/preset-env" // Allow us to use the latest feature of javascript
+    "@babel/preset-env", // Allow us to use the latest feature of javascript
+    "@babel/preset-react"
   ],
   "plugins": [
     "@babel/plugin-proposal-class-properties" // Allow us to use class properties
+    // "react-hot-loader/babel"
   ]
+  // ,
+  // "env":{
+  //   "start":{
+  //     "plugins":[
+  //       "react-hot-loader/babel"
+  //     ]
+  //   }
+  // }
 }

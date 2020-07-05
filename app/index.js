@@ -1,8 +1,6 @@
 import('./main.css')
-import component from './component'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './components/app';
 
-const app = document.createElement('div');
-
-document.body.appendChild(app)
-
-app.appendChild(component())
+ReactDOM.render(<App/>,document.getElementById('app'))

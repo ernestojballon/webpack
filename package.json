@@ -3,13 +3,18 @@
   "version": "1.0.0",
   "description": "webpack",
   "main": "./app/index.js",
-  "dependencies": {},
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.9.6",
     "babel-loader": "^8.1.0",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",
+    "react-hot-loader": "^4.12.21",
+    "@hot-loader/react-dom": "^16.8.6",
     "babel-register": "^6.26.0",
     "css-loader": "^3.6.0",
     "style-loader": "^1.2.1",

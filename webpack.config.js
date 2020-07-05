@@ -3,17 +3,23 @@ const merge = require('webpack-merge') // Help me to merge configs for webpack
 const webpack = require("webpack")
 
 const TARGET = process.env.npm_lifecycle_event; 
+
 const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build')
 }
+
+// process.env.BABEL_ENV = TARGET
+
+
 // common config for both targets
 const common = {
   entry:{
     app:PATHS.app
   },
   resolve:{
-    extensions:['.js','.jsx']
+    extensions:['.js','.jsx'],
+    alias: { 'react-dom': '@hot-loader/react-dom'  }
   },
   output:{
     path:PATHS.build,
@@ -34,11 +40,13 @@ const common = {
             // It enables caching results in ./node_modules/.cache/babel-loader/
             // directory for faster rebuilds.
           cacheDirectory: true,
+          plugins: ['react-hot-loader/babel'],
         },
         include:PATHS.app
       }
   ]
-  }
+  },
+  
 }
 // Default configuration
 if(TARGET == 'start' || !TARGET){
