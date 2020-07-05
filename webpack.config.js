@@ -12,16 +12,32 @@ const common = {
   entry:{
     app:PATHS.app
   },
+  resolve:{
+    extensions:['.js','.jsx']
+  },
   output:{
     path:PATHS.build,
     filename: 'bundle.js'
   },
   module:{
-    rules:[{
-      test: /\.css$/,
-      loaders:['style-loader','css-loader'],
-      include:PATHS.app
-    }]
+    rules:[
+      {
+        test: /\.css$/,
+        loaders:['style-loader','css-loader'],
+        include:PATHS.app
+      },
+      {
+        test: /\.jsx?$/,
+        loader: require.resolve('babel-loader'),// look babel config presets and plugins
+        options: {
+            // This is a feature of `babel-loader` for Webpack (not Babel itself).
+            // It enables caching results in ./node_modules/.cache/babel-loader/
+            // directory for faster rebuilds.
+          cacheDirectory: true,
+        },
+        include:PATHS.app
+      }
+  ]
   }
 }
 // Default configuration
@@ -35,7 +51,7 @@ if(TARGET == 'start' || !TARGET){
       historyApiFallback: true, // The index.html page will likely have to be served in place of any 404 responses
       hot: true, // Enable webpack's Hot Module Replacement feature:
       inline: true, // Insert a script on your bundle to help the hot reload
-      progress: true, // Output running progess to console
+      progress: true, // Output running progress to console
       stats: 'errors-only', // This option lets you precisely control what bundle information gets displayed.
     },
     plugins: [
