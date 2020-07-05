@@ -1,12 +1,13 @@
 const path = require('path')
-const merge = require('webpack-merge')
+const merge = require('webpack-merge') // Help me to merge configs for webpack
 const webpack = require("webpack")
 
-const TARGET = process.env.npm_lifecycle_event;
+const TARGET = process.env.npm_lifecycle_event; 
 const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build')
 }
+// common config for both targets
 const common = {
   entry:{
     app:PATHS.app
@@ -14,23 +15,31 @@ const common = {
   output:{
     path:PATHS.build,
     filename: 'bundle.js'
+  },
+  module:{
+    rules:[{
+      test: /\.css$/,
+      loaders:['style-loader','css-loader'],
+      include:PATHS.app
+    }]
   }
 }
 // Default configuration
 if(TARGET == 'start' || !TARGET){
   module.exports = merge(common,{
+    devtool:'eval-source-map',// This adds sourceMaps for better debugging in the browser
     devServer: {
-      contentBase: PATHS.build,
-      historyApiFallback: true,
-      hot: true,
-      inline: true,
-      progress: true,
-      stats: 'errors-only',
-      host: process.env.HOST,
-      port: process.env.PORT
+      contentBase: PATHS.build, // Server the files in this folder
+      host: process.env.HOST , // Serve the files in this host
+      port: process.env.PORT || 3000, // Serve the files in this port
+      historyApiFallback: true, // The index.html page will likely have to be served in place of any 404 responses
+      hot: true, // Enable webpack's Hot Module Replacement feature:
+      inline: true, // Insert a script on your bundle to help the hot reload
+      progress: true, // Output running progess to console
+      stats: 'errors-only', // This option lets you precisely control what bundle information gets displayed.
     },
     plugins: [
-      new webpack.HotModuleReplacementPlugin()
+      new webpack.HotModuleReplacementPlugin() // We need this for hot reloading to work
     ]
   })
 }
