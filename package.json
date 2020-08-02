@@ -3,6 +3,25 @@
   "version": "1.0.0",
   "description": "webpack",
   "main": "./app/index.js",
+  "scripts": {
+    "lint": "eslint \"app/**/*.+(js|jsx)\"",
+    "lint:fix": "prettier-eslint $PWD/\"app/**/*.+(js|jsx)\" --write",
+    "build": "webpack -p",
+    "build2": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --watch webpack.config.js --exec webpack-dev-server"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.+(js|jsx)": [
+      "npm run lint:fix",
+      "npm run lint"
+    ]
+  },
   "dependencies": {
     "alt": "^0.18.6",
     "alt-container": "^1.1.1",
@@ -28,6 +47,8 @@
     "eslint-plugin-react-hooks": "^4.0.8",
     "html-webpack-plugin": "^4.3.0",
     "html-webpack-template": "^6.2.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "nodemon": "^2.0.4",
     "npm-install-webpack-plugin": "^4.0.5",
     "prettier-eslint": "^11.0.0",
@@ -40,14 +61,6 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^4.2.2"
-  },
-  "scripts": {
-    "eslint": "eslint \"**/*.js*\"",
-    "eslint:fix": "prettier-eslint $PWD/\"**/*.js*\" --write",
-    "build": "webpack -p",
-    "build2": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --watch webpack.config.js --exec webpack-dev-server"
   },
   "author": "ernesto ballon",
   "license": "MIT"
