@@ -24,11 +24,7 @@ const App = () => {
   return (
     <div>
       <button onClick={addNote}>+</button>
-      <Notes
-        notes={noteStore.notes}
-        updateNote={updateNote}
-        deleteNote={deleteNote}
-      />
+      <Notes notes={noteStore.notes} updateNote={updateNote} deleteNote={deleteNote} />
     </div>
   );
 };
