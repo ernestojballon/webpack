@@ -29,11 +29,10 @@ class NoteStore {
 
   update(updateNote) {
     const notes = this.notes.map((note) => {
-      if (not.id === updateNote.id)
-        return {
-          ...note,
-          ...updateNote,
-        };
+      if (note.id === updateNote.id) return {
+        ...note,
+        ...updateNote,
+      };
       return note;
     });
     // console.log(notes);
