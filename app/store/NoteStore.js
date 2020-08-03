@@ -5,7 +5,6 @@ import NoteActions from '../actions/NoteActions';
 class NoteStore {
   constructor() {
     this.bindActions(NoteActions);
-
     this.notes = [
       {
         id: uuid(),
@@ -30,10 +29,14 @@ class NoteStore {
 
   update(updateNote) {
     const notes = this.notes.map((note) => {
-      if (note.id === updateNote.id) return { ...note, ...updateNote };
+      if (not.id === updateNote.id)
+        return {
+          ...note,
+          ...updateNote,
+        };
       return note;
     });
-    console.log(notes);
+    // console.log(notes);
     this.setState({
       notes,
     });
